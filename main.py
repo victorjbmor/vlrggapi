@@ -30,6 +30,15 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
+from fastapi.middleware.cors import CORSMiddleware 
+
+app.add_middleware( 
+    CORSMiddleware, 
+    allow_origins=["*"], 
+    allow_credentials=False, 
+    allow_methods=["GET"], 
+    allow_headers=["*"],)
+
 app.add_middleware(RateLimitMiddleware)
 
 app.include_router(vlr_router)
