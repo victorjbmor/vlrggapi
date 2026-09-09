@@ -9,6 +9,7 @@ from routers.v2_router import router as v2_router
 from routers.vlr_router import router as vlr_router
 from utils.constants import API_DESCRIPTION, API_PORT, API_TITLE
 from utils.http_client import close_http_client
+from fastapi.middleware.cors import CORSMiddleware
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -28,9 +29,7 @@ app = FastAPI(
     docs_url="/",
     redoc_url=None,
     lifespan=lifespan,
-)
-
-from fastapi.middleware.cors import CORSMiddleware 
+) 
 
 app.add_middleware( 
     CORSMiddleware, 
